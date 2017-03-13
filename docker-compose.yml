@@ -3,9 +3,6 @@ version: '2'
 services:
    db:
      image: mysql:5.7
-     volumes:
-       - db_data:/var/lib/mysql
-     restart: always
      environment:
        MYSQL_ROOT_PASSWORD: wordpress
        MYSQL_DATABASE: wordpress
@@ -22,6 +19,7 @@ services:
    web:
       depends_on:
        - php
+       - db
       image: nginx:latest
       ports:
         - "80:80"
